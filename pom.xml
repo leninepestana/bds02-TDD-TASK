@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.devsuperior</groupId>
-	<artifactId>bds02-TDD-TASK</artifactId>
+	<artifactId>bds02</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bds02-TDD-TASK</name>
+	<name>bds02</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
