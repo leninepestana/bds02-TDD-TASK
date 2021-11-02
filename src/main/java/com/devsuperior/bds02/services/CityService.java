@@ -41,4 +41,13 @@ public class CityService {
 		City entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));
 		return new CityDTO(entity);
 	}
+
+	@Transactional
+	public CityDTO insert(CityDTO dto) {
+		City entity = new City();
+		entity.setName(dto.getName());
+		entity = cityRepository.save(entity);
+		return new CityDTO(entity);
+	}
+	
 }
