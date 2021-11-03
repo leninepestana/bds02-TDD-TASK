@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,9 +48,15 @@ public class CityController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<CityDTO> insert(@RequestBody CityDTO dto) {
-		dto = cityService.insert(dto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
-		return ResponseEntity.ok().body(dto);
+	public ResponseEntity<CityDTO> insert(@RequestBody CityDTO cityDto) {
+		cityDto = cityService.insert(cityDto);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cityDto.getId()).toUri();
+		return ResponseEntity.created(uri).body(cityDto);
+	}
+
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<CityDTO> update(@PathVariable Long id, @RequestBody CityDTO cityDto) {
+		cityDto = cityService.update(id, cityDto);
+		return ResponseEntity.ok().body(cityDto);
 	}
 }
