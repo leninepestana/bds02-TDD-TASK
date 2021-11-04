@@ -25,14 +25,22 @@ public class CityController {
 	@Autowired
 	private CityService cityService;
 	
+	/*
 	@GetMapping
 	public ResponseEntity<List<CityDTO>> findAll() {
-		/*
-		List<City> list = new ArrayList<>();
-		list.add(new City(1L, "Castelo Branco"));
-		list.add(new City(2L, "Vila Velha de Ródão"));
-		*/
+		
+		// List<City> list = new ArrayList<>();
+		// list.add(new City(1L, "Castelo Branco"));
+		// list.add(new City(2L, "Vila Velha de Ródão"));
+		
 		List<CityDTO> list = cityService.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+	*/
+	
+	@GetMapping
+	public ResponseEntity<List<CityDTO>> findAllByName() {
+		List<CityDTO> list = cityService.findAllByName();
 		return ResponseEntity.ok().body(list);
 	}
 

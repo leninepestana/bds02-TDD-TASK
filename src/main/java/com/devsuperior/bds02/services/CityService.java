@@ -9,6 +9,7 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,20 +25,26 @@ public class CityService {
 	@Autowired
 	private CityRepository cityRepository;
 	
+	/*
 	@Transactional(readOnly = true)
 	public List<CityDTO> findAll() {
 		List<City> list = cityRepository.findAll();
 		
 		return list.stream().map(x -> new CityDTO(x)).collect(Collectors.toList());
-				
-		/*
-		List<CityDTO> listDto = new ArrayList<>();
-		for (City c : list) {
-			listDto.add(new CityDTO(c));
-		}
+						
+		// List<CityDTO> listDto = new ArrayList<>();
+		// for (City c : list) {
+		// 	listDto.add(new CityDTO(c));
+		// }
 		
-		return listDto;
-		*/
+		// return listDto;
+		
+	}
+	*/
+	
+	public List<CityDTO> findAllByName() {
+		List<City> list = cityRepository.findAll(Sort.by("name"));
+		return list.stream().map(x -> new CityDTO(x)).collect(Collectors.toList());
 	}
 
 	@Transactional(readOnly = true)
@@ -79,5 +86,7 @@ public class CityService {
 			throw new DatabaseException("Integrity violation");
 		}
 	}
+
+	
 	
 }
