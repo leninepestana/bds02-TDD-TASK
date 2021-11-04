@@ -1,6 +1,8 @@
 package com.devsuperior.bds02.entities;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -75,4 +77,6 @@ public class Event {
 	public void setCity(City city) {
 		this.city = city;
 	}
+	
+
 }
