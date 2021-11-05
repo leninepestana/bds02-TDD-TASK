@@ -1,8 +1,7 @@
 package com.devsuperior.bds02.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +13,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_event")
-public class Event {
-
+public class Event implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -26,6 +26,7 @@ public class Event {
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
+	
 	
 	public Event() {
 	}
