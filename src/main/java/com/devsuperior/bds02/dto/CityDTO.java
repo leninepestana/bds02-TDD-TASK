@@ -22,7 +22,7 @@ public class CityDTO implements Serializable {
 		id = entity.getId();
 		name = entity.getName();
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -38,4 +38,5 @@ public class CityDTO implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 }

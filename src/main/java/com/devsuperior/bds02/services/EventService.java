@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +17,7 @@ import com.devsuperior.bds02.entities.Event;
 import com.devsuperior.bds02.repositories.CityRepository;
 import com.devsuperior.bds02.repositories.EventRepository;
 import com.devsuperior.bds02.services.exceptions.ControllerNotFoundException;
+import com.devsuperior.bds02.services.exceptions.DatabaseException;
 
 @Service
 public class EventService {
@@ -60,8 +63,17 @@ public class EventService {
 		}
 	}
 
+	
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
+		try {
+			eventRepository.deleteById(id);
+		}
+		catch(EmptyResultDataAccessException e) {
+			throw new ControllerNotFoundException("Id not found " + id);
+		}
+		catch(DataIntegrityViolationException e) {
+			throw new DatabaseException("Integrity violation");
+		}
 		
 	}
 	
@@ -69,8 +81,7 @@ public class EventService {
 		entity.setName(eventDto.getName());
 		entity.setDate(eventDto.getDate());
 		entity.setUrl(eventDto.getUrl());
-		entity.setCity(cityRepository.getOne(eventDto.getCityId()));
-		
+		entity.setCity(cityRepository.getOne(eventDto.getCityId()));		
 	}
 
 }
