@@ -1,31 +1,55 @@
 <h2>TAREFA: TDD Event-City</h2>
 
-<p>Implemente as funcionalidades necessárias para que os testes do projeto abaixo passem:</p>
+<h3>TDD Event-City Class Diagram</h3>
 
 
 ![Event-City](https://user-images.githubusercontent.com/22635013/139555001-719be02a-4b22-4777-9640-bf87fe87ff53.jpg)
 
 
-<h4>💡 Configuração e estrutura de pastas no computador:</h4>
+<h4>💡 Possível estrutura de pastas</h4>
 
 <p>
 	<strong>📂C:\ws-bootcamp\02-42.Desafio.TDD.para.entregar\bds02</strong>
 </p>
 
-- Criada a camada de acesso a dados - Repositories (JpaRepository)
-- Camada de Serviço
+<ul>
+	<li>Criação de camadas de acesso a dados - Repositories (JpaRepository)</li>
+	<li>Criação de camadas de serviço - Services</li>
+	<li>Criação de camadas de controle - Controllers</li>
+	<li>DTO</li>
+</ul>
 
-- Criação do CityController ou CityResource no package com.devsuperior.bds02.controllers
+<h3>City</h3>
+<h4>Métodos implementados</h4>
+<ul>
+	<li>findAllByName()</li>
+	<li>findById(id)</li>
+	<li>insert(@RequestBody CityDTO cityDto)</li>
+	<li>update(@PathVariable Long id, @RequestBody CityDTO cityDto)</li>
+	<li>delete(@PathVariable Long id)</li>
+</ul>
 
-- Criação de endpoint para responder a uma lista de cidades CityController
+<h3>Event</h3>
+<h4>Métodos implementados</h4>
+<ul>
+	<li>findAll()</li>
+	<li>findById(@PathVariable Long id)</li>
+	<li>insert(@RequestBody EventDTO eventDto)</li>
+	<li>update(@PathVariable Long id, @RequestBody EventDTO eventDto)</li>
+	<li>delete(@PathVariable Long id)</li>
+</ul>
 
-- A ir para  01-19 Atualizando categoria com PUT
-
-- Alterado o nome da excepção ResourceNotFoundExcepcion para ControllerNotFoundException uma vez que o Spring também tem uma classe com o mesmo nome
-
-- 01-20 Deletando cities com DELETE
+<h3>Testes CityControllerIT</h3>
+✅ deleteShouldReturnNotFoundWheNonExistingId()</br>
+✅ insertShouldInsertResource()</br>
+✅ deleteShouldReturnNoContentWhenIndependentId()</br>
+✅ deleteShouldReturnBadRequestWhenDependentId()</br>
+✅ findAllShouldReturnAllResourcesSortedByName()</br>
+<h3>Testes EventControllerIT</h3>
+✅ updateShouldUpdateResourceWhenIdExists()</br>
+✅ updateShouldReturnNotFoundWhenIdDoesNotExist()</br>
 
 <hr></</hr>
-<p>Lenine Pestana<br/>
-leninepestana@gmail.com
+<p>🥴 Lenine Pestana<br/>
+✉ leninepestana@gmail.com
 </p>
